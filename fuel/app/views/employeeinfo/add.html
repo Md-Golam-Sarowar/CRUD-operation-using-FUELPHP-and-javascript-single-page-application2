@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html> 
+    <head>
+        <title>Add information</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        
+        <script type="text/javascript">
+        <!--
+          $(function() {
+            $(".submit").click(function(e) {
+              var name = document.getElementById("Name").value;
+            var designation = document.getElementById("Designation").value;
+            var company_name = document.getElementById("company_name").value;
+            var joining_date = document.getElementById("Joining_date").value;
+            var data = {
+              Name : name,
+              Designation : designation,
+              Company_name : company_name,
+              Joining_date : joining_date
+            };
+
+            var Url = "https://linkstaffemployee.000webhostapp.com/welcome/add";
+            var postreq = new XMLHttpRequest();
+            postreq.open('POST', Url, true);
+            postreq.send(data);
+            postreq.setRequestHeader("Content-Type", "application/json");
+            postreq.onreadystatechange = processRequest;
+            function processRequest(e) {
+            if (postreq.readyState == 4 && postreq.status == 200) {
+            alert(postreq.responseText.headers.Host);
+            document.write(postreq.responseText);
+            var response1 = JSON.parse(xhr.responseText);
+             document.getElementById("Name").innerHTML = response1.Name;
+             document.getElementById("Designation").innerHTML = response1.Designation;
+             document.getElementById("Joining_date").innerHTML = response1.Joining_date;
+             document.getElementById("company_name").innerHTML = response1.company_name;
+            }
+            }
+
+              e.preventDefault();
+              var msg = 'Sure to add？';
+              if (confirm(msg)) {
+                $("#bnform").submit();
+              }
+            });
+    
+            var a = new Array(5);
+            a[0] = '<a href="';
+            a[1] = '"';
+            a[2] = '><img src="';
+            a[3] = '" alt="';
+            a[4] = '" width="' + $('#width').val() + '" height="' + $('#height').val() + '" /></a>';
+            function edit_preview() {
+              var href = $("<div/>").text($('#a_href').val()).html();
+              var target_blank = '';
+              if($("#target_blank").prop("checked")){
+                target_blank = ' target="_blank"';
+              }
+              var src = $("<div/>").text($('#img_src').val()).html();
+              var sub_text = $('#img_alt').val();
+              var html_text = a[0] + href + a[1] + target_blank + a[2] + src + a[3] + sub_text + a[4];
+              $('#preview1').html(html_text);
+              $('#preview2').text(html_text);
+              $('#tag').val(html_text);
+            }
+    
+            $(document).ready(edit_preview());
+            $('#a_href').bind("change keyup", function() {
+              edit_preview();
+            });
+            $('#img_src').bind("change keyup", function() {
+              edit_preview();
+            });
+            $('#img_alt').bind("change keyup", function() {
+              edit_preview();
+            });
+            $('#target_blank').bind("click", function() {
+              edit_preview();
+            });
+            $('#start_date').datepicker();
+            $('#end_date').datepicker();
+          });
+        -->
+        </script>
+      </head>
+<body>
+      <form name="bnform" id="bnform" enctype="multipart/form-data" action="" method="POST">        
+        <div id="contents">
+          <div><h2>Add information</h2></div>
+
+          <div class="mg_b20">
+            <!-- <p class="warn">* マークは必須項目です</p> -->
+            <table cellpadding="0" cellspacing="0">
+              <tbody>
+                <tr>
+                  <th class="inline_l">Name&nbsp;<span class="warn">*</span></th>
+                  <td><input type="text" id="Name" name="Name" tal:attributes = "value data/Name" class="w360" /></td>
+                </tr>
+                <tr>
+                    <th class="inline_l">Designation</th>
+                    <td><input type="text" id="Designation" name="Designation" tal:attributes = "value data/Description" class="w360" /></td>
+                  </tr>
+                <tr>
+                  <th class="inline_l">Company_name&nbsp;<span class="warn">*</span></th>
+                  <td><input type="text" id="company_name" name="company_name" tal:attributes = "value data/a_href" class="w360" /></td>
+                </tr>
+                <tr>
+                  <th class="inline_l">Joining_date&nbsp;<span class="warn">*</span></th>
+                  <td><input type="text" id="Joining_date" name="Joining_date" tal:attributes="value data/img_alt" class="w360" /></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <a href="#" id="addbanner" class="button submit"><br>Submit</a>
+            <!-- <a href="add.html" class="button" tal:attributes="href '/admin/advertisement/add'">submit</a> -->
+          </div> 
+        </div>
+      </form>
+
+    </div>
+
+  </body>
+</html>
